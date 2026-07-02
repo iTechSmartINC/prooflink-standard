@@ -1,8 +1,8 @@
-# ProofLink Receipt Standard v1.0
+# ProofLink Receipt Standard v3.0
 
-**Status:** Draft Standard (v1.0)
+**Status:** Open Standard — Receipt Format v3 (Standard Edition v3.0)
 **Date:** 2026-07-02
-**Authors:** iTechSmart Inc.
+**Publisher:** iTechSmart Inc.
 **Abstract:** The ProofLink Receipt Standard defines a cryptographically verifiable,
 append-only audit-record format for autonomous and semi-autonomous AI actions. Every
 action taken by the iTechSmart platform — self-heals, platform fixes, configuration
@@ -15,7 +15,11 @@ the signature against a published public key, and confirm chain linkage — with
 iTechSmart, and without access to any private key.
 
 This document normatively specifies the **v3 receipt format** (`schema_version` `"3.0"`).
-Legacy v1/v2 formats are documented as preserved-but-non-conformant.
+Legacy v1/v2 formats are documented as preserved-but-non-conformant. The **edition
+number of this Standard tracks the receipt-format generation it specifies**: this is
+edition **v3.0** because it specifies format **v3**, which is also the current live format.
+v3.0 is the first *published* edition of the Standard (the earlier v1/v2 formats were never
+published as a standalone standard). See §14.
 
 ---
 
@@ -517,7 +521,7 @@ than asserted as an exact clause-by-clause equivalence.
 
 Earlier receipts are preserved **unmodified** in the ledger (no history rewrite). They
 predate the v3 hardening and are documented as legacy / non-conformant-but-preserved. This
-Standard v1.0 normatively specifies **v3** only.
+Standard (edition v3.0) normatively specifies the **v3** format only.
 
 - **v2 (`schema_version` `"2.0"`).** `canonical_bytes` = hex canonical JSON of all fields
   **except** `canonical_bytes`, `signature`, **and `receiver_attestation`**. The
@@ -573,6 +577,17 @@ explorer, or opentimestamps.org.
 
 ## 14. Versioning & Change Policy
 
+- **Standard edition tracks the receipt-format generation.** The version number of *this
+  Standard document* is deliberately aligned with the receipt `schema_version` generation it
+  normatively specifies. This is edition **v3.0** because it specifies receipt format **v3**
+  (`schema_version` `"3.0"`), which is also the current live format. Edition v3.0 is the
+  **first published edition** of the Standard: formats v1 and v2 existed as deployed receipt
+  eras (§12) but were never published as a standalone standard, so there is no published
+  "Standard v1" or "Standard v2" document — the edition numbering starts at the generation
+  it first documents. A future receipt-format generation (a `schema_version` `"4.0"`) would
+  be specified by a **Standard edition v4.0**; the edition minor version (e.g. v3.1) is used
+  for editorial or additive clarifications that do not change the signed field set,
+  canonicalization, hash construction, or signature algorithm.
 - **Additive and forward-only.** New fields are introduced as optional additive fields
   (present only when set, absent by default), each an ordinary payload field covered by the
   hash and signature with no special verifier handling. Existing receipts remain valid and
@@ -582,8 +597,9 @@ explorer, or opentimestamps.org.
   position are preserved.
 - **Schema version bumps.** A change that alters canonicalization, the signed field set,
   the hash construction, or the signature algorithm **MUST** bump `schema_version` and be
-  documented as a new era (as v1→v2→v3 were). Verifiers select the algorithm by
-  `schema_version`.
+  documented as a new era (as formats v1→v2→v3 were). Such a bump **MUST** be accompanied by
+  a new **Standard edition** at the matching major version (a `schema_version` `"4.0"` format
+  is specified by Standard edition v4.0). Verifiers select the algorithm by `schema_version`.
 - **Reverse/derived links** (e.g. `superseded_by`) are computed at read time and returned
   **outside** the signed payload, so they never affect re-derivation.
 

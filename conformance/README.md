@@ -1,7 +1,7 @@
-# ProofLink Receipt Standard v1.0 — Conformance Test Suite
+# ProofLink Receipt Standard v3.0 — Conformance Test Suite
 
 A standalone reference checker that validates any receipt JSON against
-[ProofLink Receipt Standard v1.0](../ProofLink-Receipt-Standard-v1.md):
+[ProofLink Receipt Standard v3.0](../ProofLink-Receipt-Standard-v3.md):
 **schema shape + cryptographic integrity + hash-chain linkage**, emitting
 PASS/FAIL per receipt with reasons.
 
@@ -34,7 +34,7 @@ python3 fetch_live.py 20
 Exit code is `0` iff every receipt is conformant with its expectation
 (a fixture marked `"expect": "FAIL"` is conformant when it correctly FAILs).
 
-## The four normative checks (Standard v1.0 §10)
+## The four normative checks (Standard v3.0 §9)
 
 1. **hash_integrity** — `SHA256(canonical_bytes) == hash_sha256`
 2. **canonical_rederivation** — `json.dumps(payload, sort_keys=True, separators=(",",":"), ensure_ascii=False)` re-derives the stored `canonical_bytes` exactly (catches any tampered signed field)

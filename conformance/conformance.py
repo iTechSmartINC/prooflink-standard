@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""ProofLink Receipt Standard v1.0 — Conformance Test Suite.
+"""ProofLink Receipt Standard v3.0 — Conformance Test Suite.
 
-Validates any receipt JSON against Standard v1.0: schema shape + cryptographic
+Validates any receipt JSON against Standard v3.0: schema shape + cryptographic
 integrity + hash-chain linkage. Emits PASS/FAIL per receipt with reasons.
 
 This is a STANDALONE reference checker (stdlib + `cryptography` only): it does
@@ -63,7 +63,7 @@ def validate(receipt: dict, prev_hash: Optional[str] = None) -> dict:
     schema = str(receipt.get("schema_version", ""))
     checks.append(("schema_version", schema == SCHEMA_V3,
                   f'schema_version == "3.0"' if schema == SCHEMA_V3
-                  else f'schema_version is {schema!r}; Standard v1.0 covers "3.0" '
+                  else f'schema_version is {schema!r}; Standard v3.0 covers "3.0" '
                        f"(v1/v2 are legacy, not recomputable)"))
     sig = receipt.get("signature")
     sig_ok = isinstance(sig, dict) and {"algorithm", "public_key", "value"} <= set(sig)
