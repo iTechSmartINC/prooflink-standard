@@ -110,8 +110,8 @@ Every call seals a receipt into the chain:
 - **FastAPI / REST** — `verify.itechsmart.dev` exposes `/api/export`, `/api/verify/<id>`,
   `/api/chain`, `/api/stats`, `/api/anchors`, and `/api/how-to-verify` for backends and
   auditors.
-- **SDKs** — [`prooflink-sdk`](https://github.com/Iteksmart/prooflink-sdk) (Python + TypeScript)
-  wraps seal + verify; [`prooflink-verifier`](https://github.com/Iteksmart/prooflink-verifier)
+- **SDKs** — [`prooflink-sdk`](https://github.com/iTechSmartINC/prooflink-sdk) (Python + TypeScript)
+  wraps seal + verify; [`prooflink-verifier`](https://github.com/iTechSmartINC/prooflink-verifier)
   is the zero-dependency reference verifier.
 
 ---
